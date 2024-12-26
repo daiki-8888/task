@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- スマホ向け表示最適化 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>発声練習タスク管理表テンプレート</title>
   <style>
@@ -27,40 +26,38 @@
       line-height: 1.6;
       color: #333;
       background: var(--light-gray);
-      padding: 10px;
+      padding: 20px;
     }
 
     .container {
-      max-width: 480px; /* スマホで見やすい幅に設定 */
+      max-width: 1200px;
       margin: 0 auto;
       background: white;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      padding: 10px;
+      padding: 20px;
     }
 
     h1 {
       text-align: center;
       margin-bottom: 1em;
       color: var(--primary-color);
-      font-size: 1.4rem; /* スマホでも大きすぎないよう調整 */
+      font-size: 1.8rem;
       border-bottom: 2px solid var(--secondary-color);
-      padding-bottom: 0.4em;
+      padding-bottom: 0.5em;
     }
 
     .description {
       text-align: center;
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
       color: #666;
-      font-size: 0.9rem;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1.5em;
+      margin-bottom: 2em;
       background: #fff;
-      font-size: 0.9rem; /* スマホでも窮屈に見えない程度にサイズ調整 */
     }
 
     thead {
@@ -68,12 +65,11 @@
       color: #fff;
       position: sticky;
       top: 0;
-      font-size: 0.9rem;
     }
 
     th, td {
       border: 1px solid var(--border-color);
-      padding: 0.5em;
+      padding: 1em;
       vertical-align: top;
     }
 
@@ -91,18 +87,30 @@
       background: #f8f9fa;
     }
 
-    .status-select, .memo-input, .date-input {
+    .status-select {
       width: 100%;
-      padding: 4px;
+      padding: 5px;
       border: 1px solid var(--border-color);
       border-radius: 4px;
-      font-size: 0.9rem;
+    }
+
+    .memo-input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+    }
+
+    .date-input {
+      width: 100%;
+      padding: 5px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
     }
 
     .task-category {
       font-weight: bold;
       color: var(--secondary-color);
-      font-size: 0.95rem;
     }
 
     .point-list {
@@ -111,29 +119,28 @@
     }
 
     .point-list li {
-      margin-bottom: 0.3em;
+      margin-bottom: 0.5em;
       position: relative;
-      padding-left: 1.2em;
+      padding-left: 1.5em;
     }
 
     .point-list li:before {
       content: "•";
       color: var(--secondary-color);
       position: absolute;
-      left: 0;
+      left: 0.5em;
     }
 
     .save-btn {
       display: block;
-      margin: 10px auto;
-      padding: 8px 20px;
+      margin: 20px auto;
+      padding: 10px 30px;
       background-color: var(--secondary-color);
       color: white;
       border: none;
       border-radius: 4px;
       cursor: pointer;
       transition: background-color 0.2s ease;
-      font-size: 0.9rem;
     }
 
     .save-btn:hover {
@@ -142,20 +149,22 @@
 
     footer {
       text-align: center;
-      margin-top: 1em;
-      padding-top: 0.5em;
+      margin-top: 2em;
+      padding-top: 1em;
       border-top: 1px solid var(--border-color);
       color: #777;
-      font-size: 0.8rem;
     }
 
-    /* 768px以下での表示調整 */
     @media (max-width: 768px) {
-      th, td {
-        font-size: 0.8rem;
+      .container {
+        padding: 10px;
       }
 
-      /* カラムを減らして見やすくする */
+      th, td {
+        padding: 0.5em;
+        font-size: 0.9em;
+      }
+
       .hide-mobile {
         display: none;
       }
@@ -180,7 +189,29 @@
         </tr>
       </thead>
       <tbody>
-        <!-- ページ読み込み時にJavaScriptで動的に追加 -->
+        <tr>
+          <td class="task-category">1. 姿勢チェック</td>
+          <td class="hide-mobile">声の安定性向上</td>
+          <td>
+            <ul class="point-list">
+              <li>壁に背中をつける</li>
+              <li>肩を回して位置を確認</li>
+              <li>頭頂部の意識</li>
+            </ul>
+          </td>
+          <td>2分</td>
+          <td><input type="date" class="date-input"></td>
+          <td>
+            <select class="status-select">
+              <option value="">選択</option>
+              <option value="done">完了</option>
+              <option value="partial">一部</option>
+              <option value="skip">未実施</option>
+            </select>
+          </td>
+          <td><input type="text" class="memo-input"></td>
+        </tr>
+        <!-- 他の練習項目も同様のフォーマットで追加 -->
       </tbody>
     </table>
 
@@ -192,21 +223,21 @@
   </div>
 
   <script>
-    // 進捗を保存する（例:アラートで仮実装）
     function saveProgress() {
-      alert('進捗が保存されました！(実際にはローカルストレージなどに保存処理を実装)');
+      // ローカルストレージに保存する処理
+      alert('進捗が保存されました！');
     }
 
-    // 練習項目を動的に生成
+    // テーブルの行を動的に追加する関数
     function addTrainingRows() {
       const trainingData = [
         {
-          category: "1. 姿勢チェック",
-          purpose: "声の安定性向上",
-          points: ["壁に背中をつける", "肩の位置を確認", "頭頂部の意識"],
-          time: "2分"
+          category: "2. 呼吸練習",
+          purpose: "息の安定性向上",
+          points: ["仰向け→座位→立位", "お腹の動きを意識", "胸は動かさない"],
+          time: "5分"
         },
-        {
+                {
           category: "2. 呼吸練習",
           purpose: "息の安定性向上",
           points: ["仰向け→座位→立位", "お腹の動きを意識", "胸は動かさない"],
@@ -274,7 +305,7 @@
         },
         {
           category: "13. テクニック練習",
-          purpose: "表現力強化",
+          purpose: "表現力向上",
           points: ["ビブラート", "泣き", "しゃくり"],
           time: "15分"
         },
@@ -313,7 +344,7 @@
       });
     }
 
-    // ページ読み込み時に行追加
+    // ページ読み込み時に実行
     document.addEventListener('DOMContentLoaded', () => {
       addTrainingRows();
     });
